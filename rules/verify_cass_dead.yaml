@@ -1,0 +1,19 @@
+---
+    name: "verify_cass_dead"
+    pack: "sensu"
+    description: "trigger when get nodified from dead node"
+    enabled: true
+
+    trigger:
+        type: "sensu.event_handler"
+
+    criteria:
+        trigger.check.output:
+           pattern: "nodetool: Failed to connect to"
+           type: contains
+    action:
+        ref: "cassandra.cc_replace_host_v1"
+        parameters:
+            dead_node_ip: "{{trigger.client.address}}"
+            dead_node_name: "{{trigger.client.hostname}}"
+            client_name: "{{trigger.client.name}}"

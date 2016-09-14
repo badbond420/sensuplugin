@@ -1,0 +1,7 @@
+---
+# Sensu API connection info
+host: "10.20.16.175"
+port: "4567"
+user: "sensu"
+pass: "password"
+ssl: false

@@ -1,0 +1,14 @@
+---
+    name: "verify_cass_detail_v1"
+    pack: "sensu"
+    description: "trigger when get nodified from healthy node"
+    enabled: true
+
+    trigger:
+        type: "sensu.event_handler"
+
+    criteria:
+    action:
+        ref: "core.local"
+        parameters:
+            cmd: "echo {{trigger.client.address}}"

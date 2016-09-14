@@ -1,0 +1,17 @@
+---
+    name: "verify_cass_healthy"
+    pack: "sensu"
+    description: "trigger when get notified from healthy node"
+    enabled: true
+
+    trigger:
+        type: "sensu.event_handler"
+
+    criteria:
+        trigger.check.output:
+           pattern: "are in schema disagreement"
+           type: contains
+    action:
+        ref: "core.local"
+        parameters:
+            cmd: "echo {{trigger.client.address  }} > ~/.cass_host"
